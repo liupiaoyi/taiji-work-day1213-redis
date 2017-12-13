@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<script type="text/javascript"  th:src="@{webjars/jquery/1.11.1/jquery.min.js}"></script>
+</head>
+<body>
+<form th:action="@{/addUser11}" method="post">
+
+	<table>
+	<tr>
+		<td>id:</td>
+		<td><input type="text" name="id" value=""/></td>
+	</tr>
+	<tr>
+		<td>username:</td>
+		<td><input type="text" name="username" value=""/></td>
+	</tr>
+	<tr>
+		<td>email:</td>
+		<td><input type="text" name="email" value=""/></td>
+	</tr>
+	</table>
+	<tr><input type="submit" value="submit"/></tr>
+</form>
+
+
+
+<p th:text="${msg}==null ? '' : ${msg} "></p>
+<table border="1" id="tb">
+	<tr>
+		<td>id</td>
+		<td>username</td>
+		<td>email</td>
+	</tr>
+	
+
+<!-- 	
+	<tr th:each="user: ${list}">
+ 		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.email}"></td>
+	</tr> 
+-->
+	
+</table>
+<button type="button" class="btn" id="btn">refresh</button>
+
+
+
+
+<script type="text/javascript">
+/*<![CDATA[*/ 
+
+$(function(){
+	$("#btn").click(function(){
+		$.post(
+				"/showUsers",
+				function(data){
+					//alert(data.length)
+					/* for(var i=0;i<data.length;i++){ 
+						$(data,)
+						html+="<th><td th:text='${"+data[i].id+"}'></td><td th:text='${"
+								+data[i].username+"}'></td><td th:text='${"
+								+data[i].email+"}'></td></th>";
+					 } */
+					 
+					 $.each(data,function(i, user){
+		                  $("#tb").append("<tr><td>"+user.id+"</td><td>"+user.username+"</td><td>"+user.email+"</td></tr>");
+		              });
+				},
+				"json"
+			);
+	});
+});
+	
+	/*]]>*/	
+</script>
+
+</body>
+</html>

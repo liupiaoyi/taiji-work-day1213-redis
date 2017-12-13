@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<center>
+<body>
+
+
+<p th:text="${msg}==null ? '' : ${msg} "></p>
+	
+	<table border="1">
+	
+	<tr>
+		<td>id</td>
+		<td>username</td>
+		<td>email</td>
+	</tr>
+	
+	<tr th:each="user: ${list}">
+ 		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.email}"></td>
+	</tr>
+	
+	</table>
+	
+	<!-- 
+	<tr>
+		<td>id:</td>
+		<td><input type="text"  th:value="${user.id}" th:field="*{id}" readonly="readonly"/></td>
+	</tr>
+	<tr>
+		<td>username:</td>
+		<td><input type="text" th:value="${user.username}" th:field="*{username}" readonly="readonly"/></td>
+	</tr>
+	<tr>
+		<td>email:</td>
+		<td><input type="text" th:value="${user.email}" th:field="*{email}" readonly="readonly"/></td>
+	</tr>
+	<a th:href="@{/showUsers}">showUsers</a>
+	 -->
+</body>
+</center>
+</html>
